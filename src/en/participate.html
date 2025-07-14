@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Participation Form - Raffle to help with Panda's veterinary expenses</title>
+        <link rel="stylesheet" href="/statics/style.css">
+        <script>
+            function updatePrice() {
+                const countInput = document.getElementById('count');
+                const count = parseInt(countInput.value) || 0;
+                const base = count * 2;
+                const discount = Math.floor(count / 5);
+                const total = base - discount;
+                const formattedTotal = total.toFixed(2);
+
+                const calculatedPriceElement = document.getElementById('calculatedPrice');
+                calculatedPriceElement.textContent = `Total price: ${formattedTotal} €`;
+            }
+        </script>
+    </head>
+    <body>
+        <h1>Participation Form — Raffle to help with Panda's veterinary expenses</h1>
+
+        <p><a href="/en/">Return to Home Page</a></p>
+
+        <div class="important">
+            <p><strong>How to participate?</strong></p>
+            <ul>
+                <li>Choose how many entries you want (each entry costs <strong>2 euros</strong>).</li>
+                <li>For every five entries, a discount of <strong>1 euro</strong> is applied.</li>
+                <li>Send the corresponding amount to <a href="https://paypal.me/IvanMontilla" target="_blank">paypal.me/IvanMontilla</a>.
+                </li>
+            </ul>
+        </div>
+
+        <div class="important">
+            <form action="../submit-entry.php" method="POST"><p><strong>Participation Form:</strong></p>
+
+                <div>
+                    <label for="count">Number of entries:</label>
+                    <input type="number" id="count" name="count" min="1" value="1" oninput="updatePrice()" required/>
+                    <small id="calculatedPrice">Total price: 2.00 €</small>
+                </div>
+
+                <div>
+                    <label for="transaction">PayPal Transaction ID:</label>
+                    <input type="text" id="transaction" name="transaction" required/>
+                </div>
+
+                <div>
+                    <label for="name">Name or nickname:</label>
+                    <input type="text" id="name" name="name" required/>
+                </div>
+
+                <div>
+                    <label for="twitter">X (Twitter) account (optional):</label>
+                    <input type="text" id="twitter" name="twitter"/>
+                </div>
+
+                <div>
+                    <label for="instagram">Instagram account (optional):</label>
+                    <input type="text" id="instagram" name="instagram"/>
+                </div>
+
+                <div>
+                    <label for="email">Email address:</label>
+                    <input type="email" id="email" name="email" required/>
+                    <small>Will be used to contact the winner and confirm participation.</small>
+                </div>
+
+                <input type="hidden" name="language" value="en"/>
+                <input type="submit" value="Submit Entry"/>
+            </form>
+        </div>
+
+        <div class="important">
+            <form action="/en/check-entries.php" method="GET">
+                <p><strong>Check My Entries:</strong></p>
+
+                <div>
+                    <label for="check_email">Email address:</label>
+                    <input type="email" id="check_email" name="email" required/>
+                    <small>The same email you used to register your entries.</small>
+                </div>
+                <input type="submit" value="Check Entries"/>
+            </form>
+        </div>
+
+        <div class="privacy-note">
+            <p><strong>Note about your data:</strong></p>
+            <ul>
+                <li><strong>Name or nickname:</strong> It doesn't have to be real. I'll use it when announcing the
+                    winner and will make public the name entered (e.g., "The raffle was won by Filemon Pi"). It's
+                    recommended to use a unique name or nickname to avoid confusion. It will only be made public if you
+                    win.
+                </li>
+                <li><strong>Email address:</strong> I will only use it to confirm your participation and to communicate
+                    with the winner. It will never be made public.
+                </li>
+                <li><strong>Twitter and Instagram accounts:</strong> They are optional. If the winner has provided them,
+                    I will mention them when announcing the winner.
+                </li>
+                <li>Once the raffle is over, the database with the entries will be permanently deleted, so I will not
+                    keep your names or email addresses, thus preventing them from being leaked and used to send spam.
+                </li>
+            </ul>
+        </div>
+
+        <p><a href="/en/">Return to Home Page</a></p>
+
+        <p>Rest in Peace, 🐼</p>
+    </body>
+</html>

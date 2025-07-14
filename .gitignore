@@ -1,0 +1,7 @@
+.idea/
+.DS_Store
+src/vendor/
+src/config.php
+
+src/statics/*
+!src/statics/style.css

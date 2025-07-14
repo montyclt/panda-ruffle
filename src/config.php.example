@@ -1,0 +1,21 @@
+<?php
+
+return [
+    'mysql' => [
+        'host' => '127.0.0.1',
+        'database' => 'riffle',
+        'username' => 'root',
+        'password' => 'secret',
+    ],
+    'smtp' => [
+        'host' => 'smtp.gmail.com',
+        'port' => 587,
+        'username' => 'panda@example.com',
+        'password' => 'secret',
+        'secure' => 'tls',
+        'from' => [
+            'address' => 'panda@example.com',
+            'name' => 'Panda, the rabbit',
+        ],
+    ],
+];
