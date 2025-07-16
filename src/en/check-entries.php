@@ -53,4 +53,3 @@ $email_display = htmlspecialchars($email);
     <p><a href="/en">Go back</a></p>
 </body>
 </html>
-<?php exit; ?>

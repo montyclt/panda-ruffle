@@ -63,4 +63,3 @@ $email_display = htmlspecialchars($email);
     <p><a href="/es">Volver atrás</a></p>
 </body>
 </html>
-<?php exit; ?>
