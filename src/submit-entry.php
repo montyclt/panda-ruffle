@@ -27,7 +27,9 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") {
 }
 
 $count = filter_input(INPUT_POST, 'count', FILTER_VALIDATE_INT);
-$transaction_id = trim(filter_input(INPUT_POST, 'transaction'));
+$payment_method = strtoupper(trim(filter_input(INPUT_POST, 'payment_method')));
+$transaction_value = trim(filter_input(INPUT_POST, 'transaction'));
+$transaction_id = $payment_method . ' ' . $transaction_value;
 $name = trim(filter_input(INPUT_POST, 'name'));
 $twitter = trim(filter_input(INPUT_POST, 'twitter'));
 $instagram = trim(filter_input(INPUT_POST, 'instagram'));
@@ -36,11 +38,13 @@ $language = trim(filter_input(INPUT_POST, 'language'));
 
 if ($count === false
     || $count < 1
-    || empty($transaction_id)
+    || empty($payment_method)
+    || empty($transaction_value)
     || empty($name)
     || $email === false
     || empty($language)
-    || ($language !== 'en' && $language !== 'es')) {
+    || ($language !== 'en' && $language !== 'es')
+    || !in_array($payment_method, ['PAYPAL', 'BIZUM', 'BITCOIN'])) {
     error('Invalid input data.');
 }
 

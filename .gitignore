@@ -4,4 +4,5 @@ src/vendor/
 src/config.php
 
 src/statics/*
-!src/statics/style.css
+!src/statics/*.css
+!src/statics/*.js

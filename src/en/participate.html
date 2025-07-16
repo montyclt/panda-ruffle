@@ -5,19 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Participation Form - Raffle to help with Panda's veterinary expenses</title>
         <link rel="stylesheet" href="/statics/style.css">
-        <script>
-            function updatePrice() {
-                const countInput = document.getElementById('count');
-                const count = parseInt(countInput.value) || 0;
-                const base = count * 2;
-                const discount = Math.floor(count / 5);
-                const total = base - discount;
-                const formattedTotal = total.toFixed(2);
-
-                const calculatedPriceElement = document.getElementById('calculatedPrice');
-                calculatedPriceElement.textContent = `Total price: ${formattedTotal} €`;
-            }
-        </script>
+        <script src="/statics/participate.js"></script>
     </head>
     <body>
         <h1>Participation Form — Raffle to help with Panda's veterinary expenses</h1>
@@ -27,25 +15,38 @@
         <div class="important">
             <p><strong>How to participate?</strong></p>
             <ul>
-                <li>Choose how many entries you want (each entry costs <strong>2 euros</strong>).</li>
-                <li>For every five entries, a discount of <strong>1 euro</strong> is applied.</li>
-                <li>Send the corresponding amount to <a href="https://paypal.me/IvanMontilla" target="_blank">paypal.me/IvanMontilla</a>.
+                <li>Choose how many entries you want (each entry costs <strong>2 euros</strong> or <strong>0.00002 BTC plus transaction fees</strong> if paying with Bitcoin).</li>
+                <li>For every five entries, a discount of <strong>1 euro</strong> is applied (0.00001 BTC when paying with Bitcoin).</li>
+                <li>Select your preferred payment method and send the corresponding amount:
+                    <ul>
+                        <li><strong>PayPal:</strong> <a href="https://paypal.me/IvanMontilla" target="_blank">paypal.me/IvanMontilla</a></li>
+                        <li><strong>Bizum:</strong> +34 645 51 98 41</li>
+                        <li><strong>Bitcoin:</strong> bc1qdzfsxseyfqs02vxg7fnxc6le9y8u88f46esqu8</li>
+                    </ul>
                 </li>
             </ul>
         </div>
 
         <div class="important">
             <form action="../submit-entry.php" method="POST"><p><strong>Participation Form:</strong></p>
+                <div>
+                    <label for="payment_method">Payment Method:</label>
+                    <select id="payment_method" name="payment_method" required>
+                        <option value="paypal">PayPal</option>
+                        <option value="bizum">Bizum</option>
+                        <option value="bitcoin">Bitcoin</option>
+                    </select>
+                </div>
 
                 <div>
                     <label for="count">Number of entries:</label>
-                    <input type="number" id="count" name="count" min="1" value="1" oninput="updatePrice()" required/>
+                    <input type="number" id="count" name="count" min="1" value="1" required/>
                     <small id="calculatedPrice">Total price: 2.00 €</small>
                 </div>
 
                 <div>
-                    <label for="transaction">PayPal Transaction ID:</label>
-                    <input type="text" id="transaction" name="transaction" required/>
+                    <label id="transaction_label" for="transaction">PayPal Transaction ID:</label>
+                    <input type="text" id="transaction" name="transaction" placeholder="e.g., H340GBTIO4HDE5TK5" required/>
                 </div>
 
                 <div>

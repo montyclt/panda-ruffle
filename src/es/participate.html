@@ -5,19 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Formulario de Participación - Sorteo para ayudar con gastos veterinarios de Panda</title>
         <link rel="stylesheet" href="/statics/style.css">
-        <script>
-            function updatePrice() {
-                const countInput = document.getElementById('count');
-                const count = parseInt(countInput.value) || 0;
-                const base = count * 2;
-                const discount = Math.floor(count / 5);
-                const total = base - discount;
-                const formattedTotal = total.toFixed(2);
-
-                const calculatedPriceElement = document.getElementById('calculatedPrice');
-                calculatedPriceElement.textContent = `Precio total: ${formattedTotal} €`;
-            }
-        </script>
+        <script src="/statics/participate.js"></script>
     </head>
     <body>
         <h1>Formulario de Participación — Sorteo para ayudar con los gastos veterinarios de Panda</h1>
@@ -27,26 +15,38 @@
         <div class="important">
             <p><strong>¿Cómo participar?</strong></p>
             <ul>
-                <li>Elige cuántas participaciones quieres (cada participación cuesta <strong>2 euros</strong>).</li>
-                <li>Por cada cinco participaciones, se aplica un descuento de <strong>1 euro</strong>.</li>
-                <li>Envía la cantidad correspondiente a <a href="https://paypal.me/IvanMontilla" target="_blank">paypal.me/IvanMontilla</a>.</li>
-                <li>Si me conoces y tienes mi número de móvil, puedes pagar por Bizum si quieres.</li>
+                <li>Elige cuántas participaciones quieres (cada participación cuesta <strong>2 euros</strong> o <strong>0,00002 BTC más comisiones de transacción</strong> si pagas con Bitcoin).</li>
+                <li>Por cada cinco participaciones, se aplica un descuento de <strong>1 euro</strong> (0,00001 BTC para pagos con Bitcoin).</li>
+                <li>Selecciona tu método de pago preferido y envía la cantidad correspondiente:
+                    <ul>
+                        <li><strong>PayPal:</strong> <a href="https://paypal.me/IvanMontilla" target="_blank">paypal.me/IvanMontilla</a></li>
+                        <li><strong>Bizum:</strong> +34 645 51 98 41</li>
+                        <li><strong>Bitcoin:</strong> bc1qdzfsxseyfqs02vxg7fnxc6le9y8u88f46esqu8</li>
+                    </ul>
+                </li>
             </ul>
         </div>
 
         <div class="important">
             <form action="../submit-entry.php" method="POST"><p><strong>Formulario de participación:</strong></p>
+                <div>
+                    <label for="payment_method">Método de pago:</label>
+                    <select id="payment_method" name="payment_method" required>
+                        <option value="paypal">PayPal</option>
+                        <option value="bizum">Bizum</option>
+                        <option value="bitcoin">Bitcoin</option>
+                    </select>
+                </div>
 
                 <div>
                     <label for="count">Número de participaciones:</label>
-                    <input type="number" id="count" name="count" min="1" value="1" oninput="updatePrice()" required/>
+                    <input type="number" id="count" name="count" min="1" value="1" required/>
                     <small id="calculatedPrice">Precio total: 2,00 €</small>
                 </div>
 
                 <div>
-                    <label for="transaction">ID de transacción de PayPal:</label>
-                    <input type="text" id="transaction" name="transaction" required/>
-                    <small>Si tienes mi número y prefieres pagar por Bizum, pon aquí tu número.</small>
+                    <label id="transaction_label" for="transaction">ID de transacción de PayPal:</label>
+                    <input type="text" id="transaction" name="transaction" placeholder="ej., H340GBTIO4HDE5TK5" required/>
                 </div>
 
                 <div>
