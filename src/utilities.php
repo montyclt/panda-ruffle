@@ -89,8 +89,43 @@ function insertParticipation($transaction_id, $count, $name, $twitter, $instagra
 }
 
 /**
+ * Returns all raffle statistics
+ * 
+ * @return array Associative array with all raffle statistics
  * @throws Exception
  */
+function getRaffleStats()
+{
+    $pdo = getPdo();
+    
+    $query = "SELECT email_address, participation_date, COUNT(*) as count 
+            FROM participations 
+            WHERE verified = TRUE 
+            GROUP BY email_address, participation_date";
+    $stmt = $pdo->prepare($query);
+    $stmt->execute();
+    
+    $total_participations = 0;
+    $total_income = 0;
+    
+    while ($group = $stmt->fetch()) {
+        $count = (int)$group['count'];
+        
+        $group_income = (2 * $count) - floor($count / 5);
+        $total_income += $group_income;
+        
+        $total_participations += $count;
+    }
+    
+    $income_minus_prize = $total_income - 45;
+    
+    return [
+        'total_participations' => $total_participations,
+        'income' => $total_income,
+        'income_minus_prize' => $income_minus_prize
+    ];
+}
+
 function sendEmail($address, $name, $language)
 {
     global $config;
