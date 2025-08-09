@@ -58,6 +58,13 @@ function updatePaymentMethod(language) {
         } else {
             transactionLabel.textContent = 'Name as written in Bizum:';
         }
+    } else if (paymentMethod === 'wise') {
+        transactionInput.placeholder = '#1234567890';
+        if (language === 'es') {
+            transactionLabel.textContent = 'ID de transferencia de Wise:';
+        } else {
+            transactionLabel.textContent = 'Wise Transfer ID:';
+        }
     } else if (paymentMethod === 'bitcoin') {
         transactionInput.placeholder = '3a1b2c…';
         if (language === 'es') {

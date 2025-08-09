@@ -44,7 +44,7 @@ if ($count === false
     || $email === false
     || empty($language)
     || ($language !== 'en' && $language !== 'es')
-    || !in_array($payment_method, ['PAYPAL', 'BIZUM', 'BITCOIN'])) {
+    || !in_array($payment_method, ['PAYPAL', 'BIZUM', 'WISE', 'BITCOIN'])) {
     error('Invalid input data.');
 }
 
