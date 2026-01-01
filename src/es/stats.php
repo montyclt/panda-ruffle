@@ -1,9 +1,3 @@
-<?php
-
-require_once __DIR__ . '/../utilities.php';
-
-$stats = getRaffleStats();
-?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -18,9 +12,9 @@ $stats = getRaffleStats();
     <div class="important">
         <p>Estadísticas actuales del sorteo de Panda:</p>
         <ul>
-            <li><strong>Total de participaciones:</strong> <?= $stats['total_participations'] ?></li>
-            <li><strong>Ingresos totales:</strong> <?= $stats['income'] ?> €</li>
-            <li><strong>Ingresos después del coste del premio (45€):</strong> <?= $stats['income_minus_prize'] ?> €</li>
+            <li><strong>Total de participaciones:</strong> 109</li>
+            <li><strong>Ingresos totales:</strong> 202 €</li>
+            <li><strong>Ingresos después del coste del premio (45€):</strong> 157 €</li>
         </ul>
     </div>
 
@@ -31,6 +25,9 @@ $stats = getRaffleStats();
             <li>Se aplica un descuento de 1€ por cada 5 participaciones compradas por la misma persona al mismo tiempo.</li>
             <li>La fuente utilizada para el sorteo costó 45€, que se deduce de los ingresos totales.</li>
         </ul>
+
+        <p>Los datos de los participantes han sido eliminados. Puedes comprobar que esta página ahora es estática en el repositorio: <a href="https://github.com/montyclt/panda-ruffle/blob/main/src/es/stats.php">https://github.com/montyclt/panda-ruffle/blob/main/src/es/stats.php</a>.</p>
+        <p>Se mantiene la extensión .php para no romper los enlaces existentes.</p>
     </div>
 
     <p>Descansa en Paz, 🐼</p>

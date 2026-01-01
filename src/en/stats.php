@@ -1,10 +1,3 @@
-<?php
-
-require_once __DIR__ . '/../utilities.php';
-
-// Get all raffle statistics
-$stats = getRaffleStats();
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,9 +12,9 @@ $stats = getRaffleStats();
     <div class="important">
         <p>Current statistics for Panda's raffle:</p>
         <ul>
-            <li><strong>Total participations:</strong> <?= $stats['total_participations'] ?></li>
-            <li><strong>Total income:</strong> <?= $stats['income'] ?> €</li>
-            <li><strong>Income after prize cost (45€):</strong> <?= $stats['income_minus_prize'] ?> €</li>
+            <li><strong>Total participations:</strong> 109</li>
+            <li><strong>Total income:</strong> 202 €</li>
+            <li><strong>Income after prize cost (45€):</strong> 157 €</li>
         </ul>
     </div>
 
@@ -32,6 +25,8 @@ $stats = getRaffleStats();
             <li>A discount of 1€ is applied for every 5 participations bought by the same person at the same time.</li>
             <li>The font used for the raffle cost 45€, which is deducted from the total income.</li>
         </ul>
+        <p>Participants' data has been deleted. You can verify that this page is now static in the repository: <a href="https://github.com/montyclt/panda-ruffle/blob/main/src/en/stats.php">https://github.com/montyclt/panda-ruffle/blob/main/src/en/stats.php</a>.</p>
+        <p>The .php extension is maintained to avoid breaking existing links.</p>
     </div>
 
     <p>Rest in Peace, 🐼</p>
